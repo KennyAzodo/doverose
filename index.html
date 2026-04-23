@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doverose Services — Aviation & Technology Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #040d1a;
+    --deep: #071428;
+    --steel: #0a1f3d;
+    --sky: #0d6efd;
+    --cyan: #00d4ff;
+    --gold: #f5a623;
+    --silver: #a8bdd0;
+    --light: #e8f0f8;
+    --white: #ffffff;
+    --glass: rgba(255,255,255,0.04);
+    --border: rgba(0,212,255,0.15);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--light);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    background: rgba(4,13,26,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  nav.scrolled { background: rgba(4,13,26,0.98); }
+
+  /* ── LOGO ── */
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .nav-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .nav-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: var(--white);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .nav-logo-text span { color: var(--cyan); }
+
+  /* Mobile logo sizing */
+  @media (max-width: 480px) {
+    .nav-logo-img { height: 28px; }
+    .nav-logo-text { font-size: 1.3rem; letter-spacing: 2px; }
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--cyan);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy) !important;
+    background: var(--cyan);
+    padding: 8px 22px;
+    border-radius: 2px;
+    transition: background 0.3s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 26px; height: 2px; background: var(--cyan); transition: 0.3s; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, #0a1f3d 0%, #040d1a 70%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+  @keyframes gridMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(60px); }
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 5%;
+    max-width: 900px;
+    animation: heroFadeIn 1.2s ease forwards;
+  }
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid var(--border);
+    padding: 6px 20px;
+    margin-bottom: 2rem;
+    background: rgba(0,212,255,0.05);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: 4px;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .accent { color: var(--cyan); }
+  .hero-title .gold { color: var(--gold); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--silver);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--navy);
+    background: var(--cyan);
+    padding: 14px 36px;
+    border: none; border-radius: 2px;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,212,255,0.3); }
+
+  .btn-outline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: transparent;
+    padding: 14px 36px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--cyan); background: rgba(0,212,255,0.08); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 4rem;
+    z-index: 2;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--cyan);
+    letter-spacing: 2px;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  .scroll-indicator {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    z-index: 2; animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+  .scroll-indicator span { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--silver); }
+  .scroll-indicator::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--cyan), transparent); }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 100px 5%; }
+
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 3px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-body {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--silver);
+    line-height: 1.9;
+    max-width: 650px;
+  }
+
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--cyan), transparent);
+    margin: 1.5rem 0;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--deep);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+  .about-frame {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--steel) 0%, var(--navy) 100%);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,212,255,0.02) 20px, rgba(0,212,255,0.02) 21px);
+  }
+  .about-icon-big {
+    font-size: 8rem;
+    filter: drop-shadow(0 0 30px rgba(0,212,255,0.4));
+    position: relative; z-index: 1;
+  }
+  .about-badge-float {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    padding: 16px 22px;
+    text-align: center;
+  }
+  .about-badge-float small { display: block; font-size: 0.55rem; letter-spacing: 3px; }
+
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .pillar {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 2px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .pillar:hover { background: rgba(0,212,255,0.06); border-color: rgba(0,212,255,0.3); }
+  .pillar-icon { font-size: 1.5rem; margin-bottom: 6px; }
+  .pillar-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); }
+  .pillar-text { font-size: 0.8rem; color: var(--silver); margin-top: 4px; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--navy); }
+
+  .services-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem;
+  }
+
+  .services-tabs {
+    display: flex; gap: 0;
+    border: 1px solid var(--border);
+    overflow: hidden; border-radius: 2px;
+    margin-bottom: 3rem;
+  }
+  .tab-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver);
+    background: transparent;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-right: 1px solid var(--border);
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn.active, .tab-btn:hover { background: var(--cyan); color: var(--navy); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5px; }
+
+  .service-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    transition: all 0.4s;
+    position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--cyan);
+    transition: height 0.4s;
+  }
+  .service-card:hover { background: rgba(0,212,255,0.05); transform: translateY(-4px); }
+  .service-card:hover::before { height: 100%; }
+
+  .svc-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
+  .svc-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+  .svc-desc { font-size: 0.9rem; color: var(--silver); line-height: 1.8; }
+  .svc-features { margin-top: 1.2rem; list-style: none; }
+  .svc-features li {
+    font-size: 0.82rem; color: var(--silver);
+    padding: 4px 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .svc-features li::before { content: '—'; color: var(--cyan); flex-shrink: 0; }
+
+  /* ── WHY CHOOSE US ── */
+  #why {
+    background: linear-gradient(to bottom, var(--deep), var(--steel));
+    position: relative; overflow: hidden;
+  }
+  #why::before {
+    content: '';
+    position: absolute; top: -50%; right: -20%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 60%);
+  }
+
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center; position: relative; z-index: 1;
+  }
+
+  .why-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 3rem;
+  }
+
+  .why-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 2px;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .why-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+  .why-card.featured {
+    background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,212,255,0.03));
+    border-color: rgba(0,212,255,0.4);
+    grid-column: span 2;
+  }
+
+  .why-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .why-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.5rem;
+  }
+  .why-desc { font-size: 0.88rem; color: var(--silver); line-height: 1.7; }
+
+  .why-visual {
+    position: relative;
+  }
+  .why-big-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    line-height: 1;
+    letter-spacing: 5px;
+    color: rgba(0,212,255,0.06);
+    position: absolute; top: -30px; right: -20px;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .why-metric-list { display: flex; flex-direction: column; gap: 2rem; }
+  .why-metric {
+    display: flex; align-items: center; gap: 2rem;
+    padding: 1.5rem;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: border-color 0.3s;
+  }
+  .why-metric:hover { border-color: var(--cyan); }
+  .why-metric-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--cyan);
+    letter-spacing: 2px;
+    flex-shrink: 0;
+    width: 100px;
+  }
+  .why-metric-info { }
+  .why-metric-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .why-metric-desc { font-size: 0.85rem; color: var(--silver); }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--navy); }
+
+  .gallery-header { text-align: center; margin-bottom: 3rem; }
+  .gallery-header .section-body { margin: 0 auto; text-align: center; }
+  .gallery-header .divider { margin: 1.5rem auto; }
+
+  .gallery-filter {
+    display: flex; gap: 1rem; justify-content: center;
+    margin-bottom: 3rem; flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--silver);
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .filter-btn.active, .filter-btn:hover { background: var(--cyan); color: var(--navy); border-color: var(--cyan); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 180px);
+    gap: 4px;
+  }
+
+  .gallery-item {
+    overflow: hidden; position: relative; cursor: pointer;
+    background: var(--steel);
+  }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:nth-child(5) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:nth-child(10) { grid-column: span 2; grid-row: span 2; }
+  .gallery-item:nth-child(15) { grid-column: span 3; }
+  .gallery-item:nth-child(17) { grid-column: span 3; }
+  .gallery-item:nth-child(21) { grid-column: span 2; grid-row: span 2; }
+
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+    display: block;
+  }
+  .gallery-item:hover img { transform: scale(1.08); }
+
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(4,13,26,0.85), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 16px;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+
+  /* lightbox */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(4,13,26,0.96);
+    display: none; align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 30px;
+    font-size: 2rem; color: var(--cyan); cursor: pointer;
+    font-family: 'Bebas Neue'; letter-spacing: 2px;
+  }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    font-size: 3rem; color: var(--cyan); cursor: pointer;
+    font-family: 'Bebas Neue'; padding: 10px;
+    user-select: none;
+  }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--deep); }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+  .contact-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+  .contact-icon-box {
+    width: 50px; height: 50px; flex-shrink: 0;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    background: var(--glass);
+  }
+  .contact-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 4px;
+  }
+  .contact-value { font-size: 0.95rem; color: var(--light); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--silver);
+  }
+  .form-input, .form-select, .form-textarea {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    color: var(--light);
+    padding: 12px 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+  .form-select option { background: var(--deep); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--cyan); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #020a14;
+    padding: 60px 5% 30px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem; margin-bottom: 4rem;
+  }
+
+  /* Footer logo reuses same flex logo style */
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-bottom: 1.2rem;
+  }
+  .footer-logo-img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .footer-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--white);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .footer-logo-text span { color: var(--cyan); }
+
+  .footer-desc { font-size: 0.88rem; color: var(--silver); line-height: 1.8; margin-bottom: 1.5rem; }
+  .footer-socials { display: flex; gap: 1rem; }
+  .social-link {
+    width: 38px; height: 38px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+  .social-link:hover { border-color: var(--cyan); background: rgba(0,212,255,0.1); }
+
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 1.5rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-links a {
+    font-size: 0.88rem; color: var(--silver);
+    text-decoration: none; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-size: 0.8rem; color: var(--silver); }
+  .footer-cert {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--silver);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 70px; left: 0; right: 0;
+      background: rgba(4,13,26,0.98);
+      padding: 2rem 5%;
+      border-bottom: 1px solid var(--border);
+      gap: 1.5rem;
+    }
+    #about, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; }
+    .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; height: 150px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .hero-stats { gap: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .about-pillars { grid-template-columns: 1fr; }
+    .why-cards { grid-template-columns: 1fr; }
+    .why-card.featured { grid-column: span 1; }
+
+    .nav-logo-img { height: 30px; }
+    .nav-logo-text { font-size: 1.4rem; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-logo-img { height: 26px; }
+    .nav-logo-text { font-size: 1.2rem; letter-spacing: 1.5px; }
+    .footer-logo-img { height: 26px; }
+    .footer-logo-text { font-size: 1.3rem; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">
+    <img class="nav-logo-img" src="icon1.jpg" alt="Doverose Services icon"
+         onerror="this.style.display='none'">
+    <span class="nav-logo-text">DOVEROSE <span>SERVICES</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Nigeria's Premier Aviation & Technology Group</span>
+    <h1 class="hero-title">
+      ELEVATING<br><span class="accent">AVIATION</span><br><span class="gold">EXCELLENCE</span>
+    </h1>
+    <p class="hero-sub">Comprehensive ground support, real-time fleet intelligence, and cutting-edge drone technology — powering the future of aviation in Africa.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-outline">Request a Quote</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Aircraft Serviced</div></div>
+    <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Operations</div></div>
+    <div class="stat"><div class="stat-num">99.8%</div><div class="stat-label">Uptime Rate</div></div>
+  </div>
+  <div class="scroll-indicator"><span>Scroll</span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-frame">
+      <div class="about-icon-big">✈️</div>
+    </div>
+    <div class="about-badge-float">
+      EST.<br><small>2009</small>
+    </div>
+  </div>
+  <div class="about-text">
+    <span class="section-tag reveal">Who We Are</span>
+    <h2 class="section-title reveal reveal-delay-1">ABOUT<br>DOVEROSE SERVICES</h2>
+    <div class="divider reveal reveal-delay-1"></div>
+    <p class="section-body reveal reveal-delay-2">
+      Doverose Services is a Nigeria-based aviation services conglomerate delivering world-class ground support, intelligent tracking technology, and advanced drone solutions across Africa and beyond. Founded on a bedrock of precision, safety, and innovation, we bridge the gap between aviation infrastructure and modern technology.
+    </p>
+    <p class="section-body reveal reveal-delay-2" style="margin-top:1rem;">
+      Our multidisciplinary teams are certified, rigorously trained, and equipped with industry-grade tools to ensure every flight, every asset, and every operation is managed with unmatched reliability. From runway to remote farmland, Doverose Services is where expertise meets altitude.
+    </p>
+    <div class="about-pillars reveal reveal-delay-3">
+      <div class="pillar"><div class="pillar-icon">🛡️</div><div class="pillar-label">Safety First</div><div class="pillar-text">ICAO & NCAA compliant operations</div></div>
+      <div class="pillar"><div class="pillar-icon">🔧</div><div class="pillar-label">Certified Staff</div><div class="pillar-text">Fully trained ground handling crew</div></div>
+      <div class="pillar"><div class="pillar-icon">🌍</div><div class="pillar-label">Pan-African</div><div class="pillar-text">Operations across West Africa</div></div>
+      <div class="pillar"><div class="pillar-icon">⚡</div><div class="pillar-label">Rapid Response</div><div class="pillar-text">24/7 emergency support coverage</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <span class="section-tag reveal">What We Do</span>
+      <h2 class="section-title reveal reveal-delay-1">OUR SERVICES</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="section-body reveal reveal-delay-2">Three powerful pillars — ground support, intelligent tracking, and drone technology — unified under one roof.</p>
+    </div>
+  </div>
+
+  <div class="services-tabs reveal">
+    <button class="tab-btn active" onclick="switchTab('aviation')">✈️ Aviation Support</button>
+    <button class="tab-btn" onclick="switchTab('tracking')">📡 Tracking & Monitoring</button>
+    <button class="tab-btn" onclick="switchTab('drone')">🚁 Drone Technology</button>
+  </div>
+
+  <!-- Aviation Tab -->
+  <div id="tab-aviation" class="tab-content active">
+    <div class="service-card reveal">
+      <span class="svc-icon">🛢️</span>
+      <div class="svc-title">Aero Lubricant Supply</div>
+      <p class="svc-desc">Premium-grade aviation lubricants, hydraulic fluids, and engine oils sourced from globally certified manufacturers, delivered to ramp and hangar with zero compromise on quality.</p>
+      <ul class="svc-features">
+        <li>Turbine engine oils & greases</li>
+        <li>Hydraulic and landing gear fluids</li>
+        <li>Bulk and drummed delivery</li>
+        <li>Technical advisory support</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="svc-icon">🧹</span>
+      <div class="svc-title">Aircraft & Cabin Cleaning</div>
+      <p class="svc-desc">End-to-end aircraft exterior washing and interior cabin detailing services. We maintain pristine cabin standards that meet airline and passenger expectations every turnaround.</p>
+      <ul class="svc-features">
+        <li>Exterior foam wash & rinse</li>
+        <li>Deep interior cabin sanitization</li>
+        <li>Seat, carpet & galley cleaning</li>
+        <li>Quick-turnaround transit cleans</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="svc-icon">💧</span>
+      <div class="svc-title">Lavatory & Water Services</div>
+      <p class="svc-desc">Hygienic lavatory servicing and potable water replenishment to keep aircraft operating safely, comfortably, and in full compliance with health and safety regulations.</p>
+      <ul class="svc-features">
+        <li>Lavatory waste removal & flushing</li>
+        <li>Potable water testing & supply</li>
+        <li>Anti-bacterial tank treatment</li>
+        <li>Regulatory documentation</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <span class="svc-icon">⛽</span>
+      <div class="svc-title">Aircraft Fueling</div>
+      <p class="svc-desc">Precision fueling operations with calibrated equipment, ensuring accurate quantities, fuel quality checks, and absolute adherence to safety protocols on the apron.</p>
+      <ul class="svc-features">
+        <li>Jet A-1 & Avgas fueling</li>
+        <li>Density & quality sampling</li>
+        <li>Uplift reporting & documentation</li>
+        <li>Trained fueling marshals on site</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="svc-icon">❄️</span>
+      <div class="svc-title">De-Icing Services</div>
+      <p class="svc-desc">Rapid and effective aircraft de-icing and anti-icing treatments for safe cold-weather operations, using approved Type I–IV fluids and certified application equipment.</p>
+      <ul class="svc-features">
+        <li>Type I, II & IV de-icing fluids</li>
+        <li>Anti-icing pre-treatment</li>
+        <li>Holdover time monitoring</li>
+        <li>Post-application inspection</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="svc-icon">🔩</span>
+      <div class="svc-title">Ramp & Ground Handling</div>
+      <p class="svc-desc">Full-spectrum ramp coordination from pushback and towing to baggage loading and aircraft marshalling — ensuring safe, on-time aircraft ground movements.</p>
+      <ul class="svc-features">
+        <li>Aircraft marshalling & towing</li>
+        <li>GPU & ACU provision</li>
+        <li>Baggage & cargo handling</li>
+        <li>FOD prevention sweeps</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tracking Tab -->
+  <div id="tab-tracking" class="tab-content">
+    <div class="service-card reveal">
+      <span class="svc-icon">📍</span>
+      <div class="svc-title">Real-Time GPS Monitoring</div>
+      <p class="svc-desc">Industry-grade GPS tracking with sub-meter accuracy and real-time data feeds, giving you complete situational awareness of every asset in your operation — around the clock.</p>
+      <ul class="svc-features">
+        <li>Live location with 10-sec refresh</li>
+        <li>Geo-fencing & alert triggers</li>
+        <li>Historical route playback</li>
+        <li>Web & mobile dashboard access</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="svc-icon">🚛</span>
+      <div class="svc-title">Vehicle Tracking Services</div>
+      <p class="svc-desc">End-to-end vehicle tracking solutions for aviation ground service vehicles, logistics fleets, and corporate transport — optimizing routes, reducing costs, and enforcing compliance.</p>
+      <ul class="svc-features">
+        <li>Driver behavior analytics</li>
+        <li>Speed & idling alerts</li>
+        <li>Fuel consumption monitoring</li>
+        <li>Unauthorized use detection</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="svc-icon">🗂️</span>
+      <div class="svc-title">Fleet Management Solutions</div>
+      <p class="svc-desc">A comprehensive fleet intelligence platform that integrates tracking, maintenance scheduling, driver management, and analytics into one powerful operations command center.</p>
+      <ul class="svc-features">
+        <li>Preventive maintenance scheduling</li>
+        <li>Vehicle health diagnostics (OBD)</li>
+        <li>Compliance & certification tracking</li>
+        <li>Custom reporting & KPI dashboards</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Drone Tab -->
+  <div id="tab-drone" class="tab-content">
+    <div class="service-card reveal">
+      <span class="svc-icon">🌾</span>
+      <div class="svc-title">Agricultural Drone Services</div>
+      <p class="svc-desc">Precision agriculture powered by AI-equipped drones — transforming how Nigerian farmers monitor crops, apply treatments, and maximize yields across thousands of hectares.</p>
+      <ul class="svc-features">
+        <li>Automated crop spraying (pesticides/fertilizers)</li>
+        <li>NDVI field health analysis</li>
+        <li>Soil moisture & terrain mapping</li>
+        <li>Yield estimation reporting</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="svc-icon">🔍</span>
+      <div class="svc-title">Surveillance Drone Operations</div>
+      <p class="svc-desc">High-resolution aerial intelligence for security, inspections, and border/facility monitoring. Our surveillance drones operate day and night with thermal imaging capabilities.</p>
+      <ul class="svc-features">
+        <li>Perimeter & facility security patrols</li>
+        <li>Infrastructure & pipeline inspections</li>
+        <li>Thermal night-vision operations</li>
+        <li>Live-feed control room integration</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="svc-icon">🛒</span>
+      <div class="svc-title">Drone Sales & Distribution</div>
+      <p class="svc-desc">Authorised distributor of commercial, agricultural, and enterprise drones from leading global manufacturers. We supply, configure, and train your team for seamless deployment.</p>
+      <ul class="svc-features">
+        <li>Commercial & industrial UAV sales</li>
+        <li>Custom payload configuration</li>
+        <li>Pilot training & certification</li>
+        <li>After-sales support & repairs</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="why-grid">
+    <div>
+      <span class="section-tag reveal">The Doverose Edge</span>
+      <h2 class="section-title reveal reveal-delay-1">WHY CHOOSE<br>US</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="section-body reveal reveal-delay-2">We don't just provide services — we deliver confidence. Every system we operate, every tool we deploy, and every team member we field is held to the highest international standards.</p>
+      <div class="why-cards reveal reveal-delay-3">
+        <div class="why-card">
+          <div class="why-icon">⏱️</div>
+          <div class="why-title">Reliable Operations</div>
+          <div class="why-desc">99.8% service uptime with SLA-backed commitments. When you need us, we're there — every time, without exception.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">📡</div>
+          <div class="why-title">Real-Time Intelligence</div>
+          <div class="why-desc">Live dashboards, instant alerts, and continuous data streams ensure you always have eyes on your assets and operations.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🏭</div>
+          <div class="why-title">Industry-Grade Tech</div>
+          <div class="why-desc">We deploy only certified, aviation-standard equipment — from GPS hardware to drone airframes — built for professional environments.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💡</div>
+          <div class="why-title">Modern Innovation</div>
+          <div class="why-desc">Continuously adopting next-generation tools: AI analytics, IoT sensors, advanced UAV platforms — keeping you ahead of the curve.</div>
+        </div>
+        <div class="why-card featured">
+          <div class="why-icon">🤝</div>
+          <div class="why-title">End-to-End Partnership</div>
+          <div class="why-desc">From initial consultation through deployment, training, and ongoing support — Doverose Services is a long-term partner invested in your success. We integrate seamlessly into your existing operations without disruption, providing a single point of accountability across aviation support, tracking technology, and drone services.</div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual reveal reveal-delay-2">
+      <div class="why-big-text">WHY<br>US</div>
+      <div class="why-metric-list">
+        <div class="why-metric">
+          <div class="why-metric-num">99.8%</div>
+          <div class="why-metric-info">
+            <div class="why-metric-name">Service Uptime</div>
+            <div class="why-metric-desc">Consistent, round-the-clock operational reliability guaranteed by SLA</div>
+          </div>
+        </div>
+        <div class="why-metric">
+          <div class="why-metric-num">500+</div>
+          <div class="why-metric-info">
+            <div class="why-metric-name">Aircraft Serviced</div>
+            <div class="why-metric-desc">Trusted by major airlines, charters, and private operators across Africa</div>
+          </div>
+        </div>
+        <div class="why-metric">
+          <div class="why-metric-num">15k+</div>
+          <div class="why-metric-info">
+            <div class="why-metric-name">Hectares Surveyed</div>
+            <div class="why-metric-desc">Agricultural drone operations covering vast farmland with precision</div>
+          </div>
+        </div>
+        <div class="why-metric">
+          <div class="why-metric-num">24/7</div>
+          <div class="why-metric-info">
+            <div class="why-metric-name">Monitoring Coverage</div>
+            <div class="why-metric-desc">Real-time tracking and surveillance never sleeps — just like your operations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header">
+    <span class="section-tag reveal">Visual Showcase</span>
+    <h2 class="section-title reveal reveal-delay-1">OUR GALLERY</h2>
+    <div class="divider reveal reveal-delay-1"></div>
+    <p class="section-body reveal reveal-delay-2">A window into our operations — from tarmac to terrain, ground support to aerial intelligence.</p>
+  </div>
+
+  <div class="gallery-filter reveal">
+    <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+    <button class="filter-btn" onclick="filterGallery('aviation', this)">Aviation</button>
+    <button class="filter-btn" onclick="filterGallery('tracking', this)">Tracking</button>
+    <button class="filter-btn" onclick="filterGallery('drone', this)">Drones</button>
+  </div>
+
+  <div class="gallery-grid reveal" id="galleryGrid">
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(0)"><img src="img1.jpg" alt="Aviation Operations 1" onerror="this.src='https://picsum.photos/seed/avi1/600/400'"><div class="gallery-overlay"><span class="gallery-overlay-text">Ramp Operations</span></div></div>
+    <div class="gallery-item" data-cat="drone" onclick="openLightbox(1)"><img src="img2.jpg" alt="Drone Operations 2" onerror="this.src='https://picsum.photos/seed/drn2/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Drone Survey</span></div></div>
+    <div class="gallery-item" data-cat="tracking" onclick="openLightbox(2)"><img src="img3.jpg" alt="Fleet Tracking 3" onerror="this.src='https://picsum.photos/seed/trk3/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Fleet Command</span></div></div>
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(3)"><img src="img4.jpg" alt="Fueling Operations 4" onerror="this.src='https://picsum.photos/seed/avi4/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Aircraft Fueling</span></div></div>
+    <div class="gallery-item" data-cat="drone" onclick="openLightbox(4)"><img src="img5.jpg" alt="Agricultural Drone 5" onerror="this.src='https://picsum.photos/seed/drn5/600/400'"><div class="gallery-overlay"><span class="gallery-overlay-text">Crop Analysis</span></div></div>
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(5)"><img src="img6.jpg" alt="Cabin Cleaning 6" onerror="this.src='https://picsum.photos/seed/avi6/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Cabin Service</span></div></div>
+    <div class="gallery-item" data-cat="tracking" onclick="openLightbox(6)"><img src="img7.jpg" alt="GPS Monitoring 7" onerror="this.src='https://picsum.photos/seed/trk7/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">GPS Monitoring</span></div></div>
+    <div class="gallery-item" data-cat="drone" onclick="openLightbox(7)"><img src="img8.jpg" alt="Surveillance Drone 8" onerror="this.src='https://picsum.photos/seed/drn8/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Surveillance</span></div></div>
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(8)"><img src="img9.jpg" alt="De-icing 9" onerror="this.src='https://picsum.photos/seed/avi9/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">De-Icing Ops</span></div></div>
+    <div class="gallery-item" data-cat="tracking" onclick="openLightbox(9)"><img src="img10.jpg" alt="Vehicle Tracking 10" onerror="this.src='https://picsum.photos/seed/trk10/600/400'"><div class="gallery-overlay"><span class="gallery-overlay-text">Vehicle Tracking</span></div></div>
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(10)"><img src="img11.jpg" alt="Lubricant Supply 11" onerror="this.src='https://picsum.photos/seed/avi11/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Lube Supply</span></div></div>
+    <div class="gallery-item" data-cat="drone" onclick="openLightbox(11)"><img src="img12.jpg" alt="Drone Sales 12" onerror="this.src='https://picsum.photos/seed/drn12/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Drone Fleet</span></div></div>
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(12)"><img src="img13.jpg" alt="Ground Handling 13" onerror="this.src='https://picsum.photos/seed/avi13/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Ground Handling</span></div></div>
+    <div class="gallery-item" data-cat="tracking" onclick="openLightbox(13)"><img src="img14.jpg" alt="Fleet Dashboard 14" onerror="this.src='https://picsum.photos/seed/trk14/600/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Fleet Dashboard</span></div></div>
+    <div class="gallery-item" data-cat="drone" onclick="openLightbox(14)"><img src="img15.jpg" alt="Field Mapping 15" onerror="this.src='https://picsum.photos/seed/drn15/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Field Mapping</span></div></div>
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(15)"><img src="img16.jpg" alt="Water Services 16" onerror="this.src='https://picsum.photos/seed/avi16/600/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Water Services</span></div></div>
+    <div class="gallery-item" data-cat="drone" onclick="openLightbox(16)"><img src="img17.jpg" alt="Drone Inspection 17" onerror="this.src='https://picsum.photos/seed/drn17/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Infrastructure Check</span></div></div>
+    <div class="gallery-item" data-cat="tracking" onclick="openLightbox(17)"><img src="img18.jpg" alt="OBD Monitoring 18" onerror="this.src='https://picsum.photos/seed/trk18/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">OBD Diagnostics</span></div></div>
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(18)"><img src="img19.jpg" alt="Tarmac Operations 19" onerror="this.src='https://picsum.photos/seed/avi19/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Tarmac Ops</span></div></div>
+    <div class="gallery-item" data-cat="drone" onclick="openLightbox(19)"><img src="img20.jpg" alt="Night Surveillance 20" onerror="this.src='https://picsum.photos/seed/drn20/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Night Patrol</span></div></div>
+    <div class="gallery-item" data-cat="tracking" onclick="openLightbox(20)"><img src="img21.jpg" alt="Control Room 21" onerror="this.src='https://picsum.photos/seed/trk21/600/400'"><div class="gallery-overlay"><span class="gallery-overlay-text">Control Room</span></div></div>
+    <div class="gallery-item" data-cat="aviation" onclick="openLightbox(21)"><img src="img22.jpg" alt="Aircraft Marshal 22" onerror="this.src='https://picsum.photos/seed/avi22/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Aircraft Marshal</span></div></div>
+    <div class="gallery-item" data-cat="drone" onclick="openLightbox(22)"><img src="img23.jpg" alt="Crop Spraying 23" onerror="this.src='https://picsum.photos/seed/drn23/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Crop Spraying</span></div></div>
+    <div class="gallery-item" data-cat="tracking" onclick="openLightbox(23)"><img src="img24.jpg" alt="Live Tracking 24" onerror="this.src='https://picsum.photos/seed/trk24/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Live Tracking</span></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <span class="section-tag reveal">Reach Out</span>
+      <h2 class="section-title reveal reveal-delay-1">GET IN<br>TOUCH</h2>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="section-body reveal reveal-delay-2">Ready to elevate your operations? Our team is standing by to discuss your needs, provide a tailored proposal, or schedule a site assessment.</p>
+      <div class="contact-info reveal reveal-delay-3">
+        <div class="contact-item">
+          <div class="contact-icon-box">📍</div>
+          <div><div class="contact-label">Headquarters</div><div class="contact-value">Plot 42B, Aviation Road, Abuja, FCT, Nigeria</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-box">📞</div>
+          <div><div class="contact-label">Phone</div><div class="contact-value">+234 800 AERO VTG<br>+234 900 123 4567</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-box">✉️</div>
+          <div><div class="contact-label">Email</div><div class="contact-value">info@doveroseservices.ng<br>ops@doveroseservices.ng</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-box">🕐</div>
+          <div><div class="contact-label">Operations</div><div class="contact-value">24 / 7 / 365 — Always Available</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" placeholder="Doe">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="john@company.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input class="form-input" type="tel" placeholder="+234 800 000 0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Service Interest</label>
+          <select class="form-select">
+            <option value="">Select a service...</option>
+            <option>Aviation Ground Support</option>
+            <option>Aero Lubricant Supply</option>
+            <option>Aircraft & Cabin Cleaning</option>
+            <option>Lavatory & Water Services</option>
+            <option>Aircraft Fueling</option>
+            <option>De-Icing Services</option>
+            <option>GPS & Fleet Tracking</option>
+            <option>Vehicle Tracking</option>
+            <option>Fleet Management</option>
+            <option>Agricultural Drones</option>
+            <option>Surveillance Drones</option>
+            <option>Drone Sales</option>
+            <option>Multiple Services</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" placeholder="Tell us about your operation and requirements..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="submitForm()" style="width:100%; text-align:center;">Send Enquiry →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="#hero">
+        <img class="footer-logo-img" src="icon1" alt="Doverose Services icon"
+             onerror="this.style.display='none'">
+        <span class="footer-logo-text">DOVEROSE <span>SERVICES</span></span>
+      </a>
+      <p class="footer-desc">Nigeria's premier aviation support, fleet tracking, and drone technology company. Elevating standards across Africa since 2009.</p>
+      <div class="footer-socials">
+        <a class="social-link" href="#" title="LinkedIn">in</a>
+        <a class="social-link" href="#" title="Twitter">𝕏</a>
+        <a class="social-link" href="#" title="Facebook">f</a>
+        <a class="social-link" href="#" title="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Aviation</h4>
+      <ul class="footer-links">
+        <li><a href="#services">Lubricant Supply</a></li>
+        <li><a href="#services">Aircraft Cleaning</a></li>
+        <li><a href="#services">Lavatory Services</a></li>
+        <li><a href="#services">Aircraft Fueling</a></li>
+        <li><a href="#services">De-Icing</a></li>
+        <li><a href="#services">Ground Handling</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Technology</h4>
+      <ul class="footer-links">
+        <li><a href="#services">GPS Monitoring</a></li>
+        <li><a href="#services">Vehicle Tracking</a></li>
+        <li><a href="#services">Fleet Management</a></li>
+        <li><a href="#services">Agricultural Drones</a></li>
+        <li><a href="#services">Surveillance Drones</a></li>
+        <li><a href="#services">Drone Sales</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#why">Why Doverose</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Compliance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Doverose Services Ltd. All rights reserved.</p>
+    <p class="footer-cert">NCAA Certified · ICAO Compliant · ISO 9001</p>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+  <span class="lightbox-close" onclick="closeLightbox()">✕ CLOSE</span>
+  <span class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">❮</span>
+  <img id="lightboxImg" src="" alt="">
+  <span class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">❯</span>
+</div>
+
+<script>
+  // ── NAV ──
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // ── TABS ──
+  function switchTab(name) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ── GALLERY FILTER ──
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.opacity = '1';
+        item.style.transform = 'scale(1)';
+      } else {
+        item.style.opacity = '0.2';
+        item.style.transform = 'scale(0.97)';
+      }
+    });
+  }
+
+  // ── LIGHTBOX ──
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+  let currentIdx = 0;
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    const img = galleryItems[idx];
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeLightboxOnBg(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+  function lightboxNav(dir) {
+    currentIdx = (currentIdx + dir + galleryItems.length) % galleryItems.length;
+    document.getElementById('lightboxImg').src = galleryItems[currentIdx].src;
+  }
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── FORM ──
+  function submitForm() {
+    const btn = event.target;
+    btn.textContent = '✔ Message Sent!';
+    btn.style.background = 'var(--gold)';
+    setTimeout(() => {
+      btn.textContent = 'Send Enquiry →';
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // ── COUNTER ANIMATION ──
+  function animateCounter(el, target, suffix) {
+    let start = 0;
+    const step = target / 60;
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) { el.textContent = target + suffix; clearInterval(timer); return; }
+      el.textContent = Math.floor(start) + suffix;
+    }, 16);
+  }
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nums = entry.target.querySelectorAll('.stat-num');
+        nums.forEach(n => {
+          const txt = n.textContent;
+          if (txt.includes('+')) animateCounter(n, parseInt(txt), '+');
+        });
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) statObserver.observe(heroStats);
+</script>
+</body>
+</html>

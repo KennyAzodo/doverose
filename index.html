@@ -858,158 +858,61 @@
       <span class="section-tag reveal">What We Do</span>
       <h2 class="section-title reveal reveal-delay-1">OUR SERVICES</h2>
       <div class="divider reveal reveal-delay-1"></div>
-      <p class="section-body reveal reveal-delay-2">Three powerful pillars — ground support, intelligent tracking, and drone technology — unified under one roof.</p>
+      <p class="section-body reveal reveal-delay-2">
+        Delivering aviation excellence, real-time monitoring, and advanced drone solutions.
+      </p>
     </div>
   </div>
 
-  <div class="services-tabs reveal">
-    <button class="tab-btn active" onclick="switchTab('aviation')">✈️ Aviation Support</button>
-    <button class="tab-btn" onclick="switchTab('tracking')">📡 Tracking & Monitoring</button>
-    <button class="tab-btn" onclick="switchTab('drone')">🚁 Drone Technology</button>
+  <div class="tab-content active" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+    <!-- Aviation Support -->
+    <div class="service-card">
+      <img src="no4.jpeg" alt="Aviation Support" style="width:100%; height:180px; object-fit:cover; margin-bottom:15px;">
+      <div class="svc-title">Aviation Support Services</div>
+      <ul class="svc-features">
+        <li>Aero Lubricant Supply</li>
+        <li>Aircraft & Cabin Cleaning</li>
+        <li>Lavatory & Water Services</li>
+        <li>Fueling & De-Icing</li>
+      </ul>
+    </div>
+
+    <!-- Tracking -->
+    <div class="service-card">
+      <img src="no2.jpeg" alt="Tracking" style="width:100%; height:180px; object-fit:cover; margin-bottom:15px;">
+      <div class="svc-title">Tracking & Monitoring</div>
+      <ul class="svc-features">
+        <li>Real-time GPS Monitoring</li>
+        <li>Vehicle Tracking Services</li>
+        <li>Fleet Management Solutions</li>
+      </ul>
+    </div>
+
+    <!-- Drone -->
+    <div class="service-card">
+      <img src="no3.jpeg" alt="Drone Technology" style="width:100%; height:180px; object-fit:cover; margin-bottom:15px;">
+      <div class="svc-title">Drone Technology</div>
+      <ul class="svc-features">
+        <li>Agricultural Drone Applications (crop spraying, field analysis)</li>
+        <li>Surveillance Drone Operations (security, inspections)</li>
+        <li>Drone Sales & Maintenance</li>
+      </ul>
+    </div>
+
   </div>
 
-  <!-- Aviation Tab -->
-  <div id="tab-aviation" class="tab-content active">
-    <div class="service-card reveal">
-      <span class="svc-icon">🛢️</span>
-      <div class="svc-title">Aero Lubricant Supply</div>
-      <p class="svc-desc">Premium-grade aviation lubricants, hydraulic fluids, and engine oils sourced from globally certified manufacturers, delivered to ramp and hangar with zero compromise on quality.</p>
-      <ul class="svc-features">
-        <li>Turbine engine oils & greases</li>
-        <li>Hydraulic and landing gear fluids</li>
-        <li>Bulk and drummed delivery</li>
-        <li>Technical advisory support</li>
-      </ul>
-    </div>
-    <div class="service-card reveal reveal-delay-1">
-      <span class="svc-icon">🧹</span>
-      <div class="svc-title">Aircraft & Cabin Cleaning</div>
-      <p class="svc-desc">End-to-end aircraft exterior washing and interior cabin detailing services. We maintain pristine cabin standards that meet airline and passenger expectations every turnaround.</p>
-      <ul class="svc-features">
-        <li>Exterior foam wash & rinse</li>
-        <li>Deep interior cabin sanitization</li>
-        <li>Seat, carpet & galley cleaning</li>
-        <li>Quick-turnaround transit cleans</li>
-      </ul>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <span class="svc-icon">💧</span>
-      <div class="svc-title">Lavatory & Water Services</div>
-      <p class="svc-desc">Hygienic lavatory servicing and potable water replenishment to keep aircraft operating safely, comfortably, and in full compliance with health and safety regulations.</p>
-      <ul class="svc-features">
-        <li>Lavatory waste removal & flushing</li>
-        <li>Potable water testing & supply</li>
-        <li>Anti-bacterial tank treatment</li>
-        <li>Regulatory documentation</li>
-      </ul>
-    </div>
-    <div class="service-card reveal">
-      <span class="svc-icon">⛽</span>
-      <div class="svc-title">Aircraft Fueling</div>
-      <p class="svc-desc">Precision fueling operations with calibrated equipment, ensuring accurate quantities, fuel quality checks, and absolute adherence to safety protocols on the apron.</p>
-      <ul class="svc-features">
-        <li>Jet A-1 & Avgas fueling</li>
-        <li>Density & quality sampling</li>
-        <li>Uplift reporting & documentation</li>
-        <li>Trained fueling marshals on site</li>
-      </ul>
-    </div>
-    <div class="service-card reveal reveal-delay-1">
-      <span class="svc-icon">❄️</span>
-      <div class="svc-title">De-Icing Services</div>
-      <p class="svc-desc">Rapid and effective aircraft de-icing and anti-icing treatments for safe cold-weather operations, using approved Type I–IV fluids and certified application equipment.</p>
-      <ul class="svc-features">
-        <li>Type I, II & IV de-icing fluids</li>
-        <li>Anti-icing pre-treatment</li>
-        <li>Holdover time monitoring</li>
-        <li>Post-application inspection</li>
-      </ul>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <span class="svc-icon">🔩</span>
-      <div class="svc-title">Ramp & Ground Handling</div>
-      <p class="svc-desc">Full-spectrum ramp coordination from pushback and towing to baggage loading and aircraft marshalling — ensuring safe, on-time aircraft ground movements.</p>
-      <ul class="svc-features">
-        <li>Aircraft marshalling & towing</li>
-        <li>GPU & ACU provision</li>
-        <li>Baggage & cargo handling</li>
-        <li>FOD prevention sweeps</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Tracking Tab -->
-  <div id="tab-tracking" class="tab-content">
-    <div class="service-card reveal">
-      <span class="svc-icon">📍</span>
-      <div class="svc-title">Real-Time GPS Monitoring</div>
-      <p class="svc-desc">Industry-grade GPS tracking with sub-meter accuracy and real-time data feeds, giving you complete situational awareness of every asset in your operation — around the clock.</p>
-      <ul class="svc-features">
-        <li>Live location with 10-sec refresh</li>
-        <li>Geo-fencing & alert triggers</li>
-        <li>Historical route playback</li>
-        <li>Web & mobile dashboard access</li>
-      </ul>
-    </div>
-    <div class="service-card reveal reveal-delay-1">
-      <span class="svc-icon">🚛</span>
-      <div class="svc-title">Vehicle Tracking Services</div>
-      <p class="svc-desc">End-to-end vehicle tracking solutions for aviation ground service vehicles, logistics fleets, and corporate transport — optimizing routes, reducing costs, and enforcing compliance.</p>
-      <ul class="svc-features">
-        <li>Driver behavior analytics</li>
-        <li>Speed & idling alerts</li>
-        <li>Fuel consumption monitoring</li>
-        <li>Unauthorized use detection</li>
-      </ul>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <span class="svc-icon">🗂️</span>
-      <div class="svc-title">Fleet Management Solutions</div>
-      <p class="svc-desc">A comprehensive fleet intelligence platform that integrates tracking, maintenance scheduling, driver management, and analytics into one powerful operations command center.</p>
-      <ul class="svc-features">
-        <li>Preventive maintenance scheduling</li>
-        <li>Vehicle health diagnostics (OBD)</li>
-        <li>Compliance & certification tracking</li>
-        <li>Custom reporting & KPI dashboards</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Drone Tab -->
-  <div id="tab-drone" class="tab-content">
-    <div class="service-card reveal">
-      <span class="svc-icon">🌾</span>
-      <div class="svc-title">Agricultural Drone Services</div>
-      <p class="svc-desc">Precision agriculture powered by AI-equipped drones — transforming how Nigerian farmers monitor crops, apply treatments, and maximize yields across thousands of hectares.</p>
-      <ul class="svc-features">
-        <li>Automated crop spraying (pesticides/fertilizers)</li>
-        <li>NDVI field health analysis</li>
-        <li>Soil moisture & terrain mapping</li>
-        <li>Yield estimation reporting</li>
-      </ul>
-    </div>
-    <div class="service-card reveal reveal-delay-1">
-      <span class="svc-icon">🔍</span>
-      <div class="svc-title">Surveillance Drone Operations</div>
-      <p class="svc-desc">High-resolution aerial intelligence for security, inspections, and border/facility monitoring. Our surveillance drones operate day and night with thermal imaging capabilities.</p>
-      <ul class="svc-features">
-        <li>Perimeter & facility security patrols</li>
-        <li>Infrastructure & pipeline inspections</li>
-        <li>Thermal night-vision operations</li>
-        <li>Live-feed control room integration</li>
-      </ul>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <span class="svc-icon">🛒</span>
-      <div class="svc-title">Drone Sales & Distribution</div>
-      <p class="svc-desc">Authorised distributor of commercial, agricultural, and enterprise drones from leading global manufacturers. We supply, configure, and train your team for seamless deployment.</p>
-      <ul class="svc-features">
-        <li>Commercial & industrial UAV sales</li>
-        <li>Custom payload configuration</li>
-        <li>Pilot training & certification</li>
-        <li>After-sales support & repairs</li>
-      </ul>
-    </div>
+  <!-- Call to Action -->
+  <div style="text-align:center; margin-top:60px;">
+    <h3 style="font-family:'Bebas Neue'; font-size:2.5rem; letter-spacing:2px;">
+      CALL US NOW AT
+    </h3>
+    <p style="font-size:1.8rem; color:var(--cyan); margin-top:10px;">
+      +234 806 903 3090
+    </p>
+    <p style="margin-top:10px; color:var(--silver);">
+      Offices in Port Harcourt, Kaduna and Jos – we serve Nigeria and beyond.
+    </p>
   </div>
 </section>
 
@@ -1138,23 +1041,36 @@
       <div class="divider reveal reveal-delay-1"></div>
       <p class="section-body reveal reveal-delay-2">Ready to elevate your operations? Our team is standing by to discuss your needs, provide a tailored proposal, or schedule a site assessment.</p>
       <div class="contact-info reveal reveal-delay-3">
-        <div class="contact-item">
-          <div class="contact-icon-box">📍</div>
-          <div><div class="contact-label">Headquarters</div><div class="contact-value">Plot 42B, Aviation Road, Abuja, FCT, Nigeria</div></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon-box">📞</div>
-          <div><div class="contact-label">Phone</div><div class="contact-value">+234 800 AERO VTG<br>+234 900 123 4567</div></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon-box">✉️</div>
-          <div><div class="contact-label">Email</div><div class="contact-value">info@doveroseservices.ng<br>ops@doveroseservices.ng</div></div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon-box">🕐</div>
-          <div><div class="contact-label">Operations</div><div class="contact-value">24 / 7 / 365 — Always Available</div></div>
-        </div>
+
+  <div class="contact-item">
+    <div class="contact-icon-box">📍</div>
+    <div>
+      <div class="contact-label">Locations</div>
+      <div class="contact-value">
+        Port Harcourt<br>
+        Kaduna<br>
+        Jos
       </div>
+    </div>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-icon-box">📞</div>
+    <div>
+      <div class="contact-label">Phone</div>
+      <div class="contact-value">+234 806 903 3090</div>
+    </div>
+  </div>
+
+  <div class="contact-item">
+    <div class="contact-icon-box">🕐</div>
+    <div>
+      <div class="contact-label">Availability</div>
+      <div class="contact-value">24/7 Operations — Always Available</div>
+    </div>
+  </div>
+
+</div>
     </div>
     <div class="reveal reveal-delay-2">
       <div class="contact-form">
@@ -1245,16 +1161,15 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
-      <ul class="footer-links">
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#why">Why Doverose</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Compliance</a></li>
-      </ul>
-    </div>
+  <h4>Contact</h4>
+  <ul class="footer-links">
+    <li>📞 +234 806 903 3090</li>
+    <li>📍 Port Harcourt</li>
+    <li>📍 Kaduna</li>
+    <li>📍 Jos</li>
+    <li>🕐 24/7 Operations</li>
+  </ul>
+</div>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2025 Doverose Services Ltd. All rights reserved.</p>

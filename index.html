@@ -21,23 +21,13 @@
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; background: var(--navy); color: var(--light); overflow-x: hidden; cursor: default; }
 
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--navy);
-    color: var(--light);
-    overflow-x: hidden;
-    cursor: default;
-  }
-
-  /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--navy); }
   ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 2px; }
 
-  /* ── NAV ── */
   nav {
     position: fixed; top: 0; width: 100%; z-index: 1000;
     padding: 0 5%;
@@ -50,311 +40,75 @@
   }
   nav.scrolled { background: rgba(4,13,26,0.98); }
 
-  /* ── LOGO ── */
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    flex-shrink: 0;
-  }
-  .nav-logo-img {
-    height: 38px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-  }
-  .nav-logo-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
-    letter-spacing: 3px;
-    color: var(--white);
-    line-height: 1;
-    white-space: nowrap;
-  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo-img { height: 38px; width: auto; object-fit: contain; display: block; }
+  .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 3px; color: var(--white); line-height: 1; white-space: nowrap; }
   .nav-logo-text span { color: var(--cyan); }
 
-  /* Mobile logo sizing */
   @media (max-width: 480px) {
     .nav-logo-img { height: 28px; }
     .nav-logo-text { font-size: 1.3rem; letter-spacing: 2px; }
   }
 
-  .nav-links {
-    display: flex; gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--silver);
-    text-decoration: none;
-    transition: color 0.3s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute; bottom: -4px; left: 0;
-    width: 0; height: 1px;
-    background: var(--cyan);
-    transition: width 0.3s;
-  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--silver); text-decoration: none; transition: color 0.3s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--cyan); transition: width 0.3s; }
   .nav-links a:hover { color: var(--cyan); }
   .nav-links a:hover::after { width: 100%; }
 
-  .nav-cta {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--navy) !important;
-    background: var(--cyan);
-    padding: 8px 22px;
-    border-radius: 2px;
-    transition: background 0.3s, transform 0.2s !important;
-  }
+  .nav-cta { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--navy) !important; background: var(--cyan); padding: 8px 22px; border-radius: 2px; transition: background 0.3s, transform 0.2s !important; }
   .nav-cta:hover { background: var(--gold) !important; transform: translateY(-1px); }
   .nav-cta::after { display: none !important; }
 
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
   .hamburger span { width: 26px; height: 2px; background: var(--cyan); transition: 0.3s; }
 
-  /* ── HERO ── */
   #hero {
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
     background: radial-gradient(ellipse 80% 60% at 50% 40%, #0a1f3d 0%, #040d1a 70%);
   }
-
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    animation: gridMove 20s linear infinite;
-  }
-  @keyframes gridMove {
-    from { transform: translateY(0); }
-    to { transform: translateY(60px); }
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 4s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-  }
-
-  .hero-content {
-    position: relative; z-index: 2;
-    text-align: center;
-    padding: 0 5%;
-    max-width: 900px;
-    animation: heroFadeIn 1.2s ease forwards;
-  }
-  @keyframes heroFadeIn {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-badge {
-    display: inline-block;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--cyan);
-    border: 1px solid var(--border);
-    padding: 6px 20px;
-    margin-bottom: 2rem;
-    background: rgba(0,212,255,0.05);
-  }
-
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3.5rem, 9vw, 7.5rem);
-    line-height: 0.95;
-    letter-spacing: 4px;
-    color: var(--white);
-    margin-bottom: 1.5rem;
-  }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px); background-size: 60px 60px; animation: gridMove 20s linear infinite; }
+  @keyframes gridMove { from { transform: translateY(0); } to { transform: translateY(60px); } }
+  .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation: pulse 4s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; } 50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; } }
+  .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 5%; max-width: 900px; animation: heroFadeIn 1.2s ease forwards; }
+  @keyframes heroFadeIn { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-badge { display: inline-block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--cyan); border: 1px solid var(--border); padding: 6px 20px; margin-bottom: 2rem; background: rgba(0,212,255,0.05); }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 9vw, 7.5rem); line-height: 0.95; letter-spacing: 4px; color: var(--white); margin-bottom: 1.5rem; }
   .hero-title .accent { color: var(--cyan); }
   .hero-title .gold { color: var(--gold); }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: var(--silver);
-    max-width: 600px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.8;
-    letter-spacing: 0.5px;
-  }
-
+  .hero-sub { font-size: 1.1rem; font-weight: 300; color: var(--silver); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8; letter-spacing: 0.5px; }
   .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-  .btn-primary {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--navy);
-    background: var(--cyan);
-    padding: 14px 36px;
-    border: none; border-radius: 2px;
-    cursor: pointer; text-decoration: none;
-    transition: all 0.3s;
-    display: inline-block;
-  }
+  .btn-primary { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--navy); background: var(--cyan); padding: 14px 36px; border: none; border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.3s; display: inline-block; }
   .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,212,255,0.3); }
-
-  .btn-outline {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--cyan);
-    background: transparent;
-    padding: 14px 36px;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    cursor: pointer; text-decoration: none;
-    transition: all 0.3s;
-    display: inline-block;
-  }
+  .btn-outline { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); background: transparent; padding: 14px 36px; border: 1px solid var(--border); border-radius: 2px; cursor: pointer; text-decoration: none; transition: all 0.3s; display: inline-block; }
   .btn-outline:hover { border-color: var(--cyan); background: rgba(0,212,255,0.08); transform: translateY(-2px); }
-
-  .hero-stats {
-    position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 4rem;
-    z-index: 2;
-  }
+  .hero-stats { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); display: flex; gap: 4rem; z-index: 2; }
   .stat { text-align: center; }
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.2rem;
-    color: var(--cyan);
-    letter-spacing: 2px;
-  }
-  .stat-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--silver);
-  }
-
-  .scroll-indicator {
-    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    z-index: 2; animation: bounce 2s ease-in-out infinite;
-  }
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
-  }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--cyan); letter-spacing: 2px; }
+  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--silver); }
+  .scroll-indicator { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 2; animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
   .scroll-indicator span { font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--silver); }
   .scroll-indicator::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--cyan), transparent); }
 
-  /* ── SECTION COMMONS ── */
   section { padding: 100px 5%; }
+  .section-tag { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem; display: block; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 3px; color: var(--white); line-height: 1; margin-bottom: 1.5rem; }
+  .section-body { font-size: 1rem; font-weight: 300; color: var(--silver); line-height: 1.9; max-width: 650px; }
+  .divider { width: 60px; height: 2px; background: linear-gradient(to right, var(--cyan), transparent); margin: 1.5rem 0; }
 
-  .section-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 1rem;
-    display: block;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    letter-spacing: 3px;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
-
-  .section-body {
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--silver);
-    line-height: 1.9;
-    max-width: 650px;
-  }
-
-  .divider {
-    width: 60px; height: 2px;
-    background: linear-gradient(to right, var(--cyan), transparent);
-    margin: 1.5rem 0;
-  }
-
-  /* ── ABOUT ── */
-  #about {
-    background: var(--deep);
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6rem; align-items: center;
-  }
-
-  .about-visual {
-    position: relative;
-  }
-  .about-frame {
-    width: 100%; aspect-ratio: 4/3;
-    background: linear-gradient(135deg, var(--steel) 0%, var(--navy) 100%);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-  .about-frame::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,212,255,0.02) 20px, rgba(0,212,255,0.02) 21px);
-  }
-  .about-icon-big {
-    font-size: 8rem;
-    filter: drop-shadow(0 0 30px rgba(0,212,255,0.4));
-    position: relative; z-index: 1;
-  }
-  .about-badge-float {
-    position: absolute;
-    bottom: -20px; right: -20px;
-    background: var(--gold);
-    color: var(--navy);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    padding: 16px 22px;
-    text-align: center;
-  }
+  #about { background: var(--deep); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .about-visual { position: relative; }
+  .about-frame { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--steel) 0%, var(--navy) 100%); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .about-frame::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,212,255,0.02) 20px, rgba(0,212,255,0.02) 21px); }
+  .about-icon-big { font-size: 8rem; filter: drop-shadow(0 0 30px rgba(0,212,255,0.4)); position: relative; z-index: 1; }
+  .about-badge-float { position: absolute; bottom: -20px; right: -20px; background: var(--gold); color: var(--navy); font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 2px; padding: 16px 22px; text-align: center; }
   .about-badge-float small { display: block; font-size: 0.55rem; letter-spacing: 3px; }
-
-  .about-pillars {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1rem; margin-top: 2rem;
-  }
-  .pillar {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    padding: 16px;
-    border-radius: 2px;
-    transition: background 0.3s, border-color 0.3s;
-  }
+  .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .pillar { background: var(--glass); border: 1px solid var(--border); padding: 16px; border-radius: 2px; transition: background 0.3s, border-color 0.3s; }
   .pillar:hover { background: rgba(0,212,255,0.06); border-color: rgba(0,212,255,0.3); }
   .pillar-icon { font-size: 1.5rem; margin-bottom: 6px; }
   .pillar-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); }
@@ -362,389 +116,150 @@
 
   /* ── SERVICES ── */
   #services { background: var(--navy); }
+  .services-header { margin-bottom: 4rem; }
 
-  .services-header {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    margin-bottom: 4rem; flex-wrap: wrap; gap: 2rem;
+  /* 3-column on desktop, 2 on tablet, 1 on mobile */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
-
-  .services-tabs {
-    display: flex; gap: 0;
-    border: 1px solid var(--border);
-    overflow: hidden; border-radius: 2px;
-    margin-bottom: 3rem;
-  }
-  .tab-btn {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--silver);
-    background: transparent;
-    padding: 12px 24px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-right: 1px solid var(--border);
-  }
-  .tab-btn:last-child { border-right: none; }
-  .tab-btn.active, .tab-btn:hover { background: var(--cyan); color: var(--navy); }
-
-  .tab-content { display: none; }
-  .tab-content.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5px; }
 
   .service-card {
     background: var(--glass);
     border: 1px solid var(--border);
-    padding: 2.5rem;
+    overflow: hidden;
     transition: all 0.4s;
-    position: relative; overflow: hidden;
+    position: relative;
     cursor: default;
+    border-radius: 2px;
   }
-  .service-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0;
-    width: 3px; height: 0;
-    background: var(--cyan);
-    transition: height 0.4s;
-  }
-  .service-card:hover { background: rgba(0,212,255,0.05); transform: translateY(-4px); }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--cyan); transition: height 0.4s; z-index: 1; }
+  .service-card:hover { background: rgba(0,212,255,0.05); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
   .service-card:hover::before { height: 100%; }
 
-  .svc-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
-  .svc-title {
+  .svc-img-wrap { width: 100%; height: 200px; overflow: hidden; position: relative; }
+  .svc-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+  .service-card:hover .svc-img-wrap img { transform: scale(1.06); }
+
+  /* category badge on image */
+  .svc-category {
+    position: absolute;
+    top: 12px; right: 12px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem;
+    font-size: 0.65rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 0.8rem;
+    color: var(--navy);
+    background: var(--cyan);
+    padding: 4px 10px;
+    border-radius: 1px;
   }
-  .svc-desc { font-size: 0.9rem; color: var(--silver); line-height: 1.8; }
-  .svc-features { margin-top: 1.2rem; list-style: none; }
-  .svc-features li {
-    font-size: 0.82rem; color: var(--silver);
-    padding: 4px 0;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .svc-features li::before { content: '—'; color: var(--cyan); flex-shrink: 0; }
+  .svc-category.gold { background: var(--gold); }
+  .svc-category.white { background: var(--white); }
 
-  /* ── WHY CHOOSE US ── */
-  #why {
-    background: linear-gradient(to bottom, var(--deep), var(--steel));
-    position: relative; overflow: hidden;
-  }
-  #why::before {
-    content: '';
-    position: absolute; top: -50%; right: -20%;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 60%);
-  }
+  .svc-body { padding: 1.8rem; }
+  .svc-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 0.7rem; }
+  .svc-desc { font-size: 0.88rem; color: var(--silver); line-height: 1.75; }
 
-  .why-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6rem; align-items: center; position: relative; z-index: 1;
-  }
+  /* Call to Action */
+  .services-cta { text-align: center; margin-top: 60px; }
+  .services-cta h3 { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 2px; color: var(--white); }
+  .services-cta p.phone { font-size: 1.8rem; color: var(--cyan); margin-top: 10px; }
+  .services-cta p.sub { margin-top: 10px; color: var(--silver); }
 
-  .why-cards {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1rem; margin-top: 3rem;
-  }
-
-  .why-card {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    border-radius: 2px;
-    transition: all 0.3s;
-    position: relative;
-  }
+  /* ── WHY ── */
+  #why { background: linear-gradient(to bottom, var(--deep), var(--steel)); position: relative; overflow: hidden; }
+  #why::before { content: ''; position: absolute; top: -50%; right: -20%; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 60%); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; position: relative; z-index: 1; }
+  .why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
+  .why-card { background: var(--glass); border: 1px solid var(--border); padding: 2rem; border-radius: 2px; transition: all 0.3s; position: relative; }
   .why-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
-  .why-card.featured {
-    background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,212,255,0.03));
-    border-color: rgba(0,212,255,0.4);
-    grid-column: span 2;
-  }
-
+  .why-card.featured { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,212,255,0.03)); border-color: rgba(0,212,255,0.4); grid-column: span 2; }
   .why-icon { font-size: 2rem; margin-bottom: 1rem; }
-  .why-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 0.5rem;
-  }
+  .why-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem; }
   .why-desc { font-size: 0.88rem; color: var(--silver); line-height: 1.7; }
-
-  .why-visual {
-    position: relative;
-  }
-  .why-big-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 8rem;
-    line-height: 1;
-    letter-spacing: 5px;
-    color: rgba(0,212,255,0.06);
-    position: absolute; top: -30px; right: -20px;
-    pointer-events: none;
-    white-space: nowrap;
-  }
-
+  .why-visual { position: relative; }
+  .why-big-text { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; line-height: 1; letter-spacing: 5px; color: rgba(0,212,255,0.06); position: absolute; top: -30px; right: -20px; pointer-events: none; white-space: nowrap; }
   .why-metric-list { display: flex; flex-direction: column; gap: 2rem; }
-  .why-metric {
-    display: flex; align-items: center; gap: 2rem;
-    padding: 1.5rem;
-    background: var(--glass);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    transition: border-color 0.3s;
-  }
+  .why-metric { display: flex; align-items: center; gap: 2rem; padding: 1.5rem; background: var(--glass); border: 1px solid var(--border); border-radius: 2px; transition: border-color 0.3s; }
   .why-metric:hover { border-color: var(--cyan); }
-  .why-metric-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
-    color: var(--cyan);
-    letter-spacing: 2px;
-    flex-shrink: 0;
-    width: 100px;
-  }
-  .why-metric-info { }
-  .why-metric-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 4px;
-  }
+  .why-metric-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--cyan); letter-spacing: 2px; flex-shrink: 0; width: 100px; }
+  .why-metric-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 4px; }
   .why-metric-desc { font-size: 0.85rem; color: var(--silver); }
 
   /* ── GALLERY ── */
   #gallery { background: var(--navy); }
-
   .gallery-header { text-align: center; margin-bottom: 3rem; }
   .gallery-header .section-body { margin: 0 auto; text-align: center; }
   .gallery-header .divider { margin: 1.5rem auto; }
-
-  .gallery-filter {
-    display: flex; gap: 1rem; justify-content: center;
-    margin-bottom: 3rem; flex-wrap: wrap;
-  }
-  .filter-btn {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--silver);
-    background: var(--glass);
-    border: 1px solid var(--border);
-    padding: 8px 20px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
+  .gallery-filter { display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap; }
+  .filter-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--silver); background: var(--glass); border: 1px solid var(--border); padding: 8px 20px; cursor: pointer; border-radius: 2px; transition: all 0.3s; }
   .filter-btn.active, .filter-btn:hover { background: var(--cyan); color: var(--navy); border-color: var(--cyan); }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 180px);
-    gap: 4px;
-  }
-
-  .gallery-item {
-    overflow: hidden; position: relative; cursor: pointer;
-    background: var(--steel);
-  }
+  .gallery-grid { display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(4, 180px); gap: 4px; }
+  .gallery-item { overflow: hidden; position: relative; cursor: pointer; background: var(--steel); }
   .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .gallery-item:nth-child(5) { grid-column: span 2; grid-row: span 2; }
   .gallery-item:nth-child(10) { grid-column: span 2; grid-row: span 2; }
   .gallery-item:nth-child(15) { grid-column: span 3; }
   .gallery-item:nth-child(17) { grid-column: span 3; }
   .gallery-item:nth-child(21) { grid-column: span 2; grid-row: span 2; }
-
-  .gallery-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-    display: block;
-  }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
   .gallery-item:hover img { transform: scale(1.08); }
-
-  .gallery-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(4,13,26,0.85), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-    display: flex; align-items: flex-end; padding: 16px;
-  }
+  .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(4,13,26,0.85), transparent); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 16px; }
   .gallery-item:hover .gallery-overlay { opacity: 1; }
-  .gallery-overlay-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--cyan);
-  }
+  .gallery-overlay-text { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--cyan); }
 
-  /* lightbox */
-  .lightbox {
-    position: fixed; inset: 0; z-index: 9999;
-    background: rgba(4,13,26,0.96);
-    display: none; align-items: center; justify-content: center;
-  }
+  .lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(4,13,26,0.96); display: none; align-items: center; justify-content: center; }
   .lightbox.open { display: flex; }
   .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
-  .lightbox-close {
-    position: absolute; top: 20px; right: 30px;
-    font-size: 2rem; color: var(--cyan); cursor: pointer;
-    font-family: 'Bebas Neue'; letter-spacing: 2px;
-  }
-  .lightbox-nav {
-    position: absolute;
-    top: 50%; transform: translateY(-50%);
-    font-size: 3rem; color: var(--cyan); cursor: pointer;
-    font-family: 'Bebas Neue'; padding: 10px;
-    user-select: none;
-  }
+  .lightbox-close { position: absolute; top: 20px; right: 30px; font-size: 2rem; color: var(--cyan); cursor: pointer; font-family: 'Bebas Neue'; letter-spacing: 2px; }
+  .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 3rem; color: var(--cyan); cursor: pointer; font-family: 'Bebas Neue'; padding: 10px; user-select: none; }
   .lightbox-prev { left: 20px; }
   .lightbox-next { right: 20px; }
 
   /* ── CONTACT ── */
   #contact { background: var(--deep); }
-
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-
   .contact-info { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
   .contact-item { display: flex; gap: 1.5rem; align-items: flex-start; }
-  .contact-icon-box {
-    width: 50px; height: 50px; flex-shrink: 0;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
-    background: var(--glass);
-  }
-  .contact-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--cyan);
-    margin-bottom: 4px;
-  }
+  .contact-icon-box { width: 50px; height: 50px; flex-shrink: 0; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; background: var(--glass); }
+  .contact-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 4px; }
   .contact-value { font-size: 0.95rem; color: var(--light); }
-
   .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
-
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-
   .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--silver);
-  }
-  .form-input, .form-select, .form-textarea {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    color: var(--light);
-    padding: 12px 16px;
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.9rem;
-    border-radius: 2px;
-    outline: none;
-    transition: border-color 0.3s;
-    width: 100%;
-  }
+  .form-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--silver); }
+  .form-input, .form-select, .form-textarea { background: var(--glass); border: 1px solid var(--border); color: var(--light); padding: 12px 16px; font-family: 'Barlow', sans-serif; font-size: 0.9rem; border-radius: 2px; outline: none; transition: border-color 0.3s; width: 100%; }
   .form-select option { background: var(--deep); }
   .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--cyan); }
   .form-textarea { resize: vertical; min-height: 120px; }
 
-  /* ── FOOTER ── */
-  footer {
-    background: #020a14;
-    padding: 60px 5% 30px;
-    border-top: 1px solid var(--border);
-  }
-  .footer-grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 4rem; margin-bottom: 4rem;
-  }
-
-  /* Footer logo reuses same flex logo style */
-  .footer-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    margin-bottom: 1.2rem;
-  }
-  .footer-logo-img {
-    height: 32px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-  }
-  .footer-logo-text {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem;
-    letter-spacing: 3px;
-    color: var(--white);
-    line-height: 1;
-    white-space: nowrap;
-  }
+  footer { background: #020a14; padding: 60px 5% 30px; border-top: 1px solid var(--border); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+  .footer-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 1.2rem; }
+  .footer-logo-img { height: 32px; width: auto; object-fit: contain; display: block; }
+  .footer-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 3px; color: var(--white); line-height: 1; white-space: nowrap; }
   .footer-logo-text span { color: var(--cyan); }
-
   .footer-desc { font-size: 0.88rem; color: var(--silver); line-height: 1.8; margin-bottom: 1.5rem; }
   .footer-socials { display: flex; gap: 1rem; }
-  .social-link {
-    width: 38px; height: 38px;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: all 0.3s;
-    border-radius: 2px;
-  }
+  .social-link { width: 38px; height: 38px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1rem; text-decoration: none; transition: all 0.3s; border-radius: 2px; }
   .social-link:hover { border-color: var(--cyan); background: rgba(0,212,255,0.1); }
-
-  .footer-col h4 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--cyan);
-    margin-bottom: 1.5rem;
-  }
+  .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 1.5rem; }
   .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-  .footer-links a {
-    font-size: 0.88rem; color: var(--silver);
-    text-decoration: none; transition: color 0.3s;
-  }
+  .footer-links a { font-size: 0.88rem; color: var(--silver); text-decoration: none; transition: color 0.3s; }
   .footer-links a:hover { color: var(--white); }
-
-  .footer-bottom {
-    border-top: 1px solid var(--border);
-    padding-top: 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1rem;
-  }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
   .footer-copy { font-size: 0.8rem; color: var(--silver); }
-  .footer-cert {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--silver);
-  }
+  .footer-cert { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--silver); }
 
-  /* ── MOBILE ── */
+  @media (max-width: 1100px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 900px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .nav-links.open {
-      display: flex; flex-direction: column;
-      position: fixed; top: 70px; left: 0; right: 0;
-      background: rgba(4,13,26,0.98);
-      padding: 2rem 5%;
-      border-bottom: 1px solid var(--border);
-      gap: 1.5rem;
-    }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: rgba(4,13,26,0.98); padding: 2rem 5%; border-bottom: 1px solid var(--border); gap: 1.5rem; }
     #about, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
     .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; }
     .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; height: 150px; }
@@ -754,11 +269,10 @@
     .about-pillars { grid-template-columns: 1fr; }
     .why-cards { grid-template-columns: 1fr; }
     .why-card.featured { grid-column: span 1; }
-
+    .services-grid { grid-template-columns: 1fr; }
     .nav-logo-img { height: 30px; }
     .nav-logo-text { font-size: 1.4rem; }
   }
-
   @media (max-width: 480px) {
     .nav-logo-img { height: 26px; }
     .nav-logo-text { font-size: 1.2rem; letter-spacing: 1.5px; }
@@ -766,11 +280,7 @@
     .footer-logo-text { font-size: 1.3rem; }
   }
 
-  /* ── ANIMATIONS ── */
-  .reveal {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
@@ -782,8 +292,7 @@
 <!-- NAV -->
 <nav id="navbar">
   <a class="nav-logo" href="#hero">
-    <img class="nav-logo-img" src="icon1.jpg" alt="Doverose Services icon"
-         onerror="this.style.display='none'">
+    <img class="nav-logo-img" src="icon1.jpg" alt="Doverose Services icon" onerror="this.style.display='none'">
     <span class="nav-logo-text">DOVEROSE <span>SERVICES</span></span>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -804,9 +313,7 @@
   <div class="hero-glow"></div>
   <div class="hero-content">
     <span class="hero-badge">Nigeria's Premier Aviation & Technology Group</span>
-    <h1 class="hero-title">
-      ELEVATING<br><span class="accent">AVIATION</span><br><span class="gold">EXCELLENCE</span>
-    </h1>
+    <h1 class="hero-title">ELEVATING<br><span class="accent">AVIATION</span><br><span class="gold">EXCELLENCE</span></h1>
     <p class="hero-sub">Comprehensive ground support, real-time fleet intelligence, and cutting-edge drone technology — powering the future of aviation in Africa.</p>
     <div class="hero-btns">
       <a href="#services" class="btn-primary">Explore Services</a>
@@ -828,20 +335,14 @@
     <div class="about-frame">
       <div class="about-icon-big">✈️</div>
     </div>
-    <div class="about-badge-float">
-      EST.<br><small>2009</small>
-    </div>
+    <div class="about-badge-float">EST.<br><small>2009</small></div>
   </div>
   <div class="about-text">
     <span class="section-tag reveal">Who We Are</span>
     <h2 class="section-title reveal reveal-delay-1">ABOUT<br>DOVEROSE SERVICES</h2>
     <div class="divider reveal reveal-delay-1"></div>
-    <p class="section-body reveal reveal-delay-2">
-      Doverose Services is a Nigeria-based aviation services conglomerate delivering world-class ground support, intelligent tracking technology, and advanced drone solutions across Africa and beyond. Founded on a bedrock of precision, safety, and innovation, we bridge the gap between aviation infrastructure and modern technology.
-    </p>
-    <p class="section-body reveal reveal-delay-2" style="margin-top:1rem;">
-      Our multidisciplinary teams are certified, rigorously trained, and equipped with industry-grade tools to ensure every flight, every asset, and every operation is managed with unmatched reliability. From runway to remote farmland, Doverose Services is where expertise meets altitude.
-    </p>
+    <p class="section-body reveal reveal-delay-2">Doverose Services is a Nigeria-based aviation services conglomerate delivering world-class ground support, intelligent tracking technology, and advanced drone solutions across Africa and beyond. Founded on a bedrock of precision, safety, and innovation, we bridge the gap between aviation infrastructure and modern technology.</p>
+    <p class="section-body reveal reveal-delay-2" style="margin-top:1rem;">Our multidisciplinary teams are certified, rigorously trained, and equipped with industry-grade tools to ensure every flight, every asset, and every operation is managed with unmatched reliability. From runway to remote farmland, Doverose Services is where expertise meets altitude.</p>
     <div class="about-pillars reveal reveal-delay-3">
       <div class="pillar"><div class="pillar-icon">🛡️</div><div class="pillar-label">Safety First</div><div class="pillar-text">ICAO & NCAA compliant operations</div></div>
       <div class="pillar"><div class="pillar-icon">🔧</div><div class="pillar-label">Certified Staff</div><div class="pillar-text">Fully trained ground handling crew</div></div>
@@ -854,65 +355,153 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="services-header">
-    <div>
-      <span class="section-tag reveal">What We Do</span>
-      <h2 class="section-title reveal reveal-delay-1">OUR SERVICES</h2>
-      <div class="divider reveal reveal-delay-1"></div>
-      <p class="section-body reveal reveal-delay-2">
-        Delivering aviation excellence, real-time monitoring, and advanced drone solutions.
-      </p>
-    </div>
+    <span class="section-tag reveal">What We Do</span>
+    <h2 class="section-title reveal reveal-delay-1">OUR SERVICES</h2>
+    <div class="divider reveal reveal-delay-1"></div>
+    <p class="section-body reveal reveal-delay-2">From tarmac to terrain — delivering aviation excellence, real-time monitoring, and advanced drone solutions across Nigeria and beyond.</p>
   </div>
 
-  <div class="tab-content active" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+  <div class="services-grid">
 
-    <!-- Aviation Support -->
-    <div class="service-card">
-      <img src="no4.jpeg" alt="Aviation Support" style="width:100%; height:180px; object-fit:cover; margin-bottom:15px;">
-      <div class="svc-title">Aviation Support Services</div>
-      <ul class="svc-features">
-        <li>Aero Lubricant Supply</li>
-        <li>Aircraft & Cabin Cleaning</li>
-        <li>Lavatory & Water Services</li>
-        <li>Fueling & De-Icing</li>
-      </ul>
+    <!-- 1. Aero Lubricant Supply -->
+    <div class="service-card reveal">
+      <div class="svc-img-wrap">
+        <img src="aerolub.jpeg" alt="Aero Lubricant Supply">
+        <span class="svc-category">Aviation</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Aero Lubricant Supply</div>
+        <p class="svc-desc">We supply a full range of aviation-grade lubricants — engine oils, hydraulic fluids, and greases — sourced from certified manufacturers. Our rapid delivery infrastructure ensures your aircraft are never grounded due to lubricant shortages, keeping turnaround times at a minimum.</p>
+      </div>
     </div>
 
-    <!-- Tracking -->
-    <div class="service-card">
-      <img src="no2.jpeg" alt="Tracking" style="width:100%; height:180px; object-fit:cover; margin-bottom:15px;">
-      <div class="svc-title">Tracking & Monitoring</div>
-      <ul class="svc-features">
-        <li>Real-time GPS Monitoring</li>
-        <li>Vehicle Tracking Services</li>
-        <li>Fleet Management Solutions</li>
-      </ul>
+    <!-- 2. Aircraft & Cabin Cleaning -->
+    <div class="service-card reveal reveal-delay-1">
+      <div class="svc-img-wrap">
+        <img src="j.jpeg" alt="Aircraft & Cabin Cleaning">
+        <span class="svc-category">Aviation</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Aircraft & Cabin Cleaning</div>
+        <p class="svc-desc">Our trained cleaning crews deliver thorough interior and exterior aircraft cleaning to international hygiene standards. From galley deep-cleans to passenger cabin turnovers, we restore every aircraft to a pristine, passenger-ready condition with speed and precision.</p>
+      </div>
     </div>
 
-    <!-- Drone -->
-    <div class="service-card">
-      <img src="no3.jpeg" alt="Drone Technology" style="width:100%; height:180px; object-fit:cover; margin-bottom:15px;">
-      <div class="svc-title">Drone Technology</div>
-      <ul class="svc-features">
-        <li>Agricultural Drone Applications (crop spraying, field analysis)</li>
-        <li>Surveillance Drone Operations (security, inspections)</li>
-        <li>Drone Sales & Maintenance</li>
-      </ul>
+    <!-- 3. Lavatory & Water Services -->
+    <div class="service-card reveal reveal-delay-2">
+      <div class="svc-img-wrap">
+        <img src="no3.jpeg" alt="Lavatory & Water Services">
+        <span class="svc-category">Aviation</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Lavatory & Water Services</div>
+        <p class="svc-desc">We handle full lavatory waste extraction and potable water replenishment for all aircraft types. Using compliant equipment and strict sanitation protocols, our ground teams ensure every service is completed safely and efficiently between every turnaround.</p>
+      </div>
+    </div>
+
+    <!-- 4. Aircraft Fueling -->
+    <div class="service-card reveal">
+      <div class="svc-img-wrap">
+        <img src="cabin.jpeg" alt="Aircraft Fueling">
+        <span class="svc-category gold">Aviation</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Aircraft Fueling</div>
+        <p class="svc-desc">Precision fueling services for commercial, charter, and private aircraft. Our certified fueling technicians operate in strict compliance with ICAO standards, delivering accurate uplift quantities with rigorous quality checks to ensure flight safety and fuel integrity on every fill.</p>
+      </div>
+    </div>
+
+    <!-- 5. De-Icing Services -->
+    <div class="service-card reveal reveal-delay-1">
+      <div class="svc-img-wrap">
+        <img src="deicing.jpeg" alt="De-Icing Services">
+        <span class="svc-category gold">Aviation</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">De-Icing Services</div>
+        <p class="svc-desc">We provide professional aircraft de-icing and anti-icing treatments to safeguard operations during adverse weather conditions. Using approved glycol-based fluids and calibrated equipment, our team ensures clean, ice-free surfaces for safe departure every time.</p>
+      </div>
+    </div>
+
+    <!-- 6. Real-Time GPS Monitoring -->
+    <div class="service-card reveal reveal-delay-2">
+      <div class="svc-img-wrap">
+        <img src="tracking.jpeg" alt="Real-Time GPS Monitoring">
+        <span class="svc-category white">Tracking</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Real-Time GPS Monitoring</div>
+        <p class="svc-desc">Our advanced GPS monitoring platform gives you continuous, live visibility of your aircraft, vehicles, and assets. With instant alerts, geo-fencing, and historical playback, you gain total situational awareness — accessible from any device, anywhere, around the clock.</p>
+      </div>
+    </div>
+
+    <!-- 7. Vehicle Tracking Services -->
+    <div class="service-card reveal">
+      <div class="svc-img-wrap">
+        <img src="vtrack.jpeg" alt="Vehicle Tracking Services">
+        <span class="svc-category white">Tracking</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Vehicle Tracking Services</div>
+        <p class="svc-desc">Keep your entire ground fleet under control with our real-time vehicle tracking solution. Monitor speed, location, idle times, and driver behaviour through a centralised dashboard — reducing fuel costs, preventing theft, and improving overall fleet discipline and accountability.</p>
+      </div>
+    </div>
+
+    <!-- 8. Fleet Management Solutions -->
+    <div class="service-card reveal reveal-delay-1">
+      <div class="svc-img-wrap">
+        <img src="fmag.jpeg" alt="Fleet Management Solutions">
+        <span class="svc-category white">Tracking</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Fleet Management Solutions</div>
+        <p class="svc-desc">End-to-end fleet management that covers scheduling, maintenance tracking, compliance monitoring, and performance analytics. Our system integrates seamlessly with existing operations to streamline your logistics, extend vehicle lifecycles, and cut operational overhead.</p>
+      </div>
+    </div>
+
+    <!-- 9. Agricultural Drone Applications -->
+    <div class="service-card reveal reveal-delay-2">
+      <div class="svc-img-wrap">
+        <img src="droneagric.jpeg" alt="Agricultural Drone Applications">
+        <span class="svc-category">Drone</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Agricultural Drone Applications</div>
+        <p class="svc-desc">We deploy precision agricultural drones for crop spraying, field mapping, and yield analysis across large-scale farmland. Our drone pilots optimise coverage patterns for maximum efficiency — reducing chemical usage, boosting crop health, and delivering actionable data to farmers.</p>
+      </div>
+    </div>
+
+    <!-- 10. Surveillance Drone Operations -->
+    <div class="service-card reveal">
+      <div class="svc-img-wrap">
+        <img src="drone.jpeg" alt="Surveillance Drone Operations">
+        <span class="svc-category">Drone</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Surveillance Drone Operations</div>
+        <p class="svc-desc">Our surveillance drone teams provide high-resolution aerial monitoring for perimeter security, infrastructure inspections, pipeline surveys, and event oversight. Equipped with thermal and optical sensors, we give security and operations teams a decisive aerial advantage.</p>
+      </div>
+    </div>
+
+    <!-- 11. Drone Sales & Maintenance -->
+    <div class="service-card reveal reveal-delay-1">
+      <div class="svc-img-wrap">
+        <img src="dronemain.jpeg" alt="Drone Sales & Maintenance">
+        <span class="svc-category">Drone</span>
+      </div>
+      <div class="svc-body">
+        <div class="svc-title">Drone Sales & Maintenance</div>
+        <p class="svc-desc">We supply commercial and industrial-grade drones to organisations across Nigeria, backed by full after-sales support. Our certified technicians handle routine maintenance, component repairs, firmware updates, and pilot training — ensuring your drone fleet stays mission-ready at all times.</p>
+      </div>
     </div>
 
   </div>
 
   <!-- Call to Action -->
-  <div style="text-align:center; margin-top:60px;">
-    <h3 style="font-family:'Bebas Neue'; font-size:2.5rem; letter-spacing:2px;">
-      CALL US NOW AT
-    </h3>
-    <p style="font-size:1.8rem; color:var(--cyan); margin-top:10px;">
-      +234 806 903 3090
-    </p>
-    <p style="margin-top:10px; color:var(--silver);">
-      Offices in Port Harcourt, Kaduna and Jos – we serve Nigeria and beyond.
-    </p>
+  <div class="services-cta reveal reveal-delay-2">
+    <h3>CALL US NOW AT</h3>
+    <p class="phone">+234 806 903 3090</p>
+    <p class="sub">Offices in Port Harcourt, Kaduna and Jos – we serve Nigeria and beyond.</p>
   </div>
 </section>
 
@@ -925,64 +514,20 @@
       <div class="divider reveal reveal-delay-1"></div>
       <p class="section-body reveal reveal-delay-2">We don't just provide services — we deliver confidence. Every system we operate, every tool we deploy, and every team member we field is held to the highest international standards.</p>
       <div class="why-cards reveal reveal-delay-3">
-        <div class="why-card">
-          <div class="why-icon">⏱️</div>
-          <div class="why-title">Reliable Operations</div>
-          <div class="why-desc">99.8% service uptime with SLA-backed commitments. When you need us, we're there — every time, without exception.</div>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">📡</div>
-          <div class="why-title">Real-Time Intelligence</div>
-          <div class="why-desc">Live dashboards, instant alerts, and continuous data streams ensure you always have eyes on your assets and operations.</div>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">🏭</div>
-          <div class="why-title">Industry-Grade Tech</div>
-          <div class="why-desc">We deploy only certified, aviation-standard equipment — from GPS hardware to drone airframes — built for professional environments.</div>
-        </div>
-        <div class="why-card">
-          <div class="why-icon">💡</div>
-          <div class="why-title">Modern Innovation</div>
-          <div class="why-desc">Continuously adopting next-generation tools: AI analytics, IoT sensors, advanced UAV platforms — keeping you ahead of the curve.</div>
-        </div>
-        <div class="why-card featured">
-          <div class="why-icon">🤝</div>
-          <div class="why-title">End-to-End Partnership</div>
-          <div class="why-desc">From initial consultation through deployment, training, and ongoing support — Doverose Services is a long-term partner invested in your success. We integrate seamlessly into your existing operations without disruption, providing a single point of accountability across aviation support, tracking technology, and drone services.</div>
-        </div>
+        <div class="why-card"><div class="why-icon">⏱️</div><div class="why-title">Reliable Operations</div><div class="why-desc">99.8% service uptime with SLA-backed commitments. When you need us, we're there — every time, without exception.</div></div>
+        <div class="why-card"><div class="why-icon">📡</div><div class="why-title">Real-Time Intelligence</div><div class="why-desc">Live dashboards, instant alerts, and continuous data streams ensure you always have eyes on your assets and operations.</div></div>
+        <div class="why-card"><div class="why-icon">🏭</div><div class="why-title">Industry-Grade Tech</div><div class="why-desc">We deploy only certified, aviation-standard equipment — from GPS hardware to drone airframes — built for professional environments.</div></div>
+        <div class="why-card"><div class="why-icon">💡</div><div class="why-title">Modern Innovation</div><div class="why-desc">Continuously adopting next-generation tools: AI analytics, IoT sensors, advanced UAV platforms — keeping you ahead of the curve.</div></div>
+        <div class="why-card featured"><div class="why-icon">🤝</div><div class="why-title">End-to-End Partnership</div><div class="why-desc">From initial consultation through deployment, training, and ongoing support — Doverose Services is a long-term partner invested in your success. We integrate seamlessly into your existing operations without disruption, providing a single point of accountability across aviation support, tracking technology, and drone services.</div></div>
       </div>
     </div>
     <div class="why-visual reveal reveal-delay-2">
       <div class="why-big-text">WHY<br>US</div>
       <div class="why-metric-list">
-        <div class="why-metric">
-          <div class="why-metric-num">99.8%</div>
-          <div class="why-metric-info">
-            <div class="why-metric-name">Service Uptime</div>
-            <div class="why-metric-desc">Consistent, round-the-clock operational reliability guaranteed by SLA</div>
-          </div>
-        </div>
-        <div class="why-metric">
-          <div class="why-metric-num">500+</div>
-          <div class="why-metric-info">
-            <div class="why-metric-name">Aircraft Serviced</div>
-            <div class="why-metric-desc">Trusted by major airlines, charters, and private operators across Africa</div>
-          </div>
-        </div>
-        <div class="why-metric">
-          <div class="why-metric-num">15k+</div>
-          <div class="why-metric-info">
-            <div class="why-metric-name">Hectares Surveyed</div>
-            <div class="why-metric-desc">Agricultural drone operations covering vast farmland with precision</div>
-          </div>
-        </div>
-        <div class="why-metric">
-          <div class="why-metric-num">24/7</div>
-          <div class="why-metric-info">
-            <div class="why-metric-name">Monitoring Coverage</div>
-            <div class="why-metric-desc">Real-time tracking and surveillance never sleeps — just like your operations</div>
-          </div>
-        </div>
+        <div class="why-metric"><div class="why-metric-num">99.8%</div><div class="why-metric-info"><div class="why-metric-name">Service Uptime</div><div class="why-metric-desc">Consistent, round-the-clock operational reliability guaranteed by SLA</div></div></div>
+        <div class="why-metric"><div class="why-metric-num">500+</div><div class="why-metric-info"><div class="why-metric-name">Aircraft Serviced</div><div class="why-metric-desc">Trusted by major airlines, charters, and private operators across Africa</div></div></div>
+        <div class="why-metric"><div class="why-metric-num">15k+</div><div class="why-metric-info"><div class="why-metric-name">Hectares Surveyed</div><div class="why-metric-desc">Agricultural drone operations covering vast farmland with precision</div></div></div>
+        <div class="why-metric"><div class="why-metric-num">24/7</div><div class="why-metric-info"><div class="why-metric-name">Monitoring Coverage</div><div class="why-metric-desc">Real-time tracking and surveillance never sleeps — just like your operations</div></div></div>
       </div>
     </div>
   </div>
@@ -996,14 +541,12 @@
     <div class="divider reveal reveal-delay-1"></div>
     <p class="section-body reveal reveal-delay-2">A window into our operations — from tarmac to terrain, ground support to aerial intelligence.</p>
   </div>
-
   <div class="gallery-filter reveal">
     <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
     <button class="filter-btn" onclick="filterGallery('aviation', this)">Aviation</button>
     <button class="filter-btn" onclick="filterGallery('tracking', this)">Tracking</button>
     <button class="filter-btn" onclick="filterGallery('drone', this)">Drones</button>
   </div>
-
   <div class="gallery-grid reveal" id="galleryGrid">
     <div class="gallery-item" data-cat="aviation" onclick="openLightbox(0)"><img src="img1.jpg" alt="Aviation Operations 1" onerror="this.src='https://picsum.photos/seed/avi1/600/400'"><div class="gallery-overlay"><span class="gallery-overlay-text">Ramp Operations</span></div></div>
     <div class="gallery-item" data-cat="drone" onclick="openLightbox(1)"><img src="img2.jpg" alt="Drone Operations 2" onerror="this.src='https://picsum.photos/seed/drn2/400/300'"><div class="gallery-overlay"><span class="gallery-overlay-text">Drone Survey</span></div></div>
@@ -1041,80 +584,47 @@
       <div class="divider reveal reveal-delay-1"></div>
       <p class="section-body reveal reveal-delay-2">Ready to elevate your operations? Our team is standing by to discuss your needs, provide a tailored proposal, or schedule a site assessment.</p>
       <div class="contact-info reveal reveal-delay-3">
-
-  <div class="contact-item">
-    <div class="contact-icon-box">📍</div>
-    <div>
-      <div class="contact-label">Locations</div>
-      <div class="contact-value">
-        Port Harcourt<br>
-        Kaduna<br>
-        Jos
+        <div class="contact-item">
+          <div class="contact-icon-box">📍</div>
+          <div><div class="contact-label">Locations</div><div class="contact-value">Port Harcourt<br>Kaduna<br>Jos</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-box">📞</div>
+          <div><div class="contact-label">Phone</div><div class="contact-value">+234 806 903 3090</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-box">🕐</div>
+          <div><div class="contact-label">Availability</div><div class="contact-value">24/7 Operations — Always Available</div></div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-icon-box">📞</div>
-    <div>
-      <div class="contact-label">Phone</div>
-      <div class="contact-value">+234 806 903 3090</div>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-icon-box">🕐</div>
-    <div>
-      <div class="contact-label">Availability</div>
-      <div class="contact-value">24/7 Operations — Always Available</div>
-    </div>
-  </div>
-
-</div>
     </div>
     <div class="reveal reveal-delay-2">
       <div class="contact-form">
         <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">First Name</label>
-            <input class="form-input" type="text" placeholder="John">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Last Name</label>
-            <input class="form-input" type="text" placeholder="Doe">
-          </div>
+          <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="John"></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Doe"></div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Email Address</label>
-          <input class="form-input" type="email" placeholder="john@company.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Phone Number</label>
-          <input class="form-input" type="tel" placeholder="+234 800 000 0000">
-        </div>
+        <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="john@company.com"></div>
+        <div class="form-group"><label class="form-label">Phone Number</label><input class="form-input" type="tel" placeholder="+234 800 000 0000"></div>
         <div class="form-group">
           <label class="form-label">Service Interest</label>
           <select class="form-select">
             <option value="">Select a service...</option>
-            <option>Aviation Ground Support</option>
             <option>Aero Lubricant Supply</option>
             <option>Aircraft & Cabin Cleaning</option>
             <option>Lavatory & Water Services</option>
             <option>Aircraft Fueling</option>
             <option>De-Icing Services</option>
-            <option>GPS & Fleet Tracking</option>
-            <option>Vehicle Tracking</option>
-            <option>Fleet Management</option>
-            <option>Agricultural Drones</option>
-            <option>Surveillance Drones</option>
-            <option>Drone Sales</option>
+            <option>Real-Time GPS Monitoring</option>
+            <option>Vehicle Tracking Services</option>
+            <option>Fleet Management Solutions</option>
+            <option>Agricultural Drone Applications</option>
+            <option>Surveillance Drone Operations</option>
+            <option>Drone Sales & Maintenance</option>
             <option>Multiple Services</option>
           </select>
         </div>
-        <div class="form-group">
-          <label class="form-label">Message</label>
-          <textarea class="form-textarea" placeholder="Tell us about your operation and requirements..."></textarea>
-        </div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell us about your operation and requirements..."></textarea></div>
         <button class="btn-primary" onclick="submitForm()" style="width:100%; text-align:center;">Send Enquiry →</button>
       </div>
     </div>
@@ -1126,8 +636,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <a class="footer-logo" href="#hero">
-        <img class="footer-logo-img" src="icon1" alt="Doverose Services icon"
-             onerror="this.style.display='none'">
+        <img class="footer-logo-img" src="icon1.jpg" alt="Doverose Services icon" onerror="this.style.display='none'">
         <span class="footer-logo-text">DOVEROSE <span>SERVICES</span></span>
       </a>
       <p class="footer-desc">Nigeria's premier aviation support, fleet tracking, and drone technology company. Elevating standards across Africa since 2009.</p>
@@ -1146,7 +655,6 @@
         <li><a href="#services">Lavatory Services</a></li>
         <li><a href="#services">Aircraft Fueling</a></li>
         <li><a href="#services">De-Icing</a></li>
-        <li><a href="#services">Ground Handling</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1161,15 +669,15 @@
       </ul>
     </div>
     <div class="footer-col">
-  <h4>Contact</h4>
-  <ul class="footer-links">
-    <li>📞 +234 806 903 3090</li>
-    <li>📍 Port Harcourt</li>
-    <li>📍 Kaduna</li>
-    <li>📍 Jos</li>
-    <li>🕐 24/7 Operations</li>
-  </ul>
-</div>
+      <h4>Contact</h4>
+      <ul class="footer-links">
+        <li>📞 +234 806 903 3090</li>
+        <li>📍 Port Harcourt</li>
+        <li>📍 Kaduna</li>
+        <li>📍 Jos</li>
+        <li>🕐 24/7 Operations</li>
+      </ul>
+    </div>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2025 Doverose Services Ltd. All rights reserved.</p>
@@ -1186,112 +694,43 @@
 </div>
 
 <script>
-  // ── NAV ──
-  function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
-  });
+  function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+  window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });
+  document.querySelectorAll('.nav-links a').forEach(a => { a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')); });
 
-  // ── TABS ──
-  function switchTab(name) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    event.target.classList.add('active');
-  }
-
-  // ── GALLERY FILTER ──
   function filterGallery(cat, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.gallery-item').forEach(item => {
-      if (cat === 'all' || item.dataset.cat === cat) {
-        item.style.opacity = '1';
-        item.style.transform = 'scale(1)';
-      } else {
-        item.style.opacity = '0.2';
-        item.style.transform = 'scale(0.97)';
-      }
+      if (cat === 'all' || item.dataset.cat === cat) { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }
+      else { item.style.opacity = '0.2'; item.style.transform = 'scale(0.97)'; }
     });
   }
 
-  // ── LIGHTBOX ──
   const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
   let currentIdx = 0;
+  function openLightbox(idx) { currentIdx = idx; document.getElementById('lightboxImg').src = galleryItems[idx].src; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+  function closeLightboxOnBg(e) { if (e.target === document.getElementById('lightbox')) closeLightbox(); }
+  function lightboxNav(dir) { currentIdx = (currentIdx + dir + galleryItems.length) % galleryItems.length; document.getElementById('lightboxImg').src = galleryItems[currentIdx].src; }
+  document.addEventListener('keydown', e => { if (!document.getElementById('lightbox').classList.contains('open')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') lightboxNav(-1); if (e.key === 'ArrowRight') lightboxNav(1); });
 
-  function openLightbox(idx) {
-    currentIdx = idx;
-    const img = galleryItems[idx];
-    document.getElementById('lightboxImg').src = img.src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function closeLightboxOnBg(e) {
-    if (e.target === document.getElementById('lightbox')) closeLightbox();
-  }
-  function lightboxNav(dir) {
-    currentIdx = (currentIdx + dir + galleryItems.length) % galleryItems.length;
-    document.getElementById('lightboxImg').src = galleryItems[currentIdx].src;
-  }
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lightboxNav(-1);
-    if (e.key === 'ArrowRight') lightboxNav(1);
-  });
-
-  // ── SCROLL REVEAL ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // ── FORM ──
   function submitForm() {
     const btn = event.target;
     btn.textContent = '✔ Message Sent!';
     btn.style.background = 'var(--gold)';
-    setTimeout(() => {
-      btn.textContent = 'Send Enquiry →';
-      btn.style.background = '';
-    }, 3000);
+    setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; }, 3000);
   }
 
-  // ── COUNTER ANIMATION ──
   function animateCounter(el, target, suffix) {
-    let start = 0;
-    const step = target / 60;
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { el.textContent = target + suffix; clearInterval(timer); return; }
-      el.textContent = Math.floor(start) + suffix;
-    }, 16);
+    let start = 0; const step = target / 60;
+    const timer = setInterval(() => { start += step; if (start >= target) { el.textContent = target + suffix; clearInterval(timer); return; } el.textContent = Math.floor(start) + suffix; }, 16);
   }
   const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const nums = entry.target.querySelectorAll('.stat-num');
-        nums.forEach(n => {
-          const txt = n.textContent;
-          if (txt.includes('+')) animateCounter(n, parseInt(txt), '+');
-        });
-        statObserver.unobserve(entry.target);
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) { const nums = entry.target.querySelectorAll('.stat-num'); nums.forEach(n => { const txt = n.textContent; if (txt.includes('+')) animateCounter(n, parseInt(txt), '+'); }); statObserver.unobserve(entry.target); } });
   }, { threshold: 0.5 });
   const heroStats = document.querySelector('.hero-stats');
   if (heroStats) statObserver.observe(heroStats);
